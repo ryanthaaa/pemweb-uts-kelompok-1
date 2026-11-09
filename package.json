@@ -1,0 +1,32 @@
+{
+  "name": "pemweb-uts-kelompok-1",
+  "version": "1.0.0",
+  "description": "Aplikasi Manajemen Warnet Berbasis Express MVC dan MySQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanthaaa/pemweb-uts-kelompok-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ryanthaaa/pemweb-uts-kelompok-1/issues"
+  },
+  "homepage": "https://github.com/ryanthaaa/pemweb-uts-kelompok-1#readme",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
