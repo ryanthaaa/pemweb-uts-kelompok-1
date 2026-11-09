@@ -1,0 +1,75 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const table = document.querySelector('table');
+        if (!table) return;
+
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'))
+            .filter(row => row.querySelectorAll('td').length > 1);
+
+        const perPage = 5;
+        let currentPage = 1;
+
+        if (rows.length <= perPage) return;
+
+        const totalPages = Math.ceil(rows.length / perPage);
+
+        const pagination = document.createElement('div');
+        pagination.className = 'flex justify-between items-center mt-6 mb-8';
+
+        pagination.innerHTML = `
+            <p class="text-sm text-gray-400" id="pageInfo"></p>
+            <div class="flex gap-2" id="pageButtons"></div>
+        `;
+
+        table.parentElement.insertAdjacentElement('afterend', pagination);
+
+        const pageInfo = pagination.querySelector('#pageInfo');
+        const pageButtons = pagination.querySelector('#pageButtons');
+
+        function showPage(page) {
+            currentPage = page;
+
+            rows.forEach((row, index) => {
+                const start = (page - 1) * perPage;
+                const end = start + perPage;
+
+                row.style.display =
+                    index >= start && index < end ? '' : 'none';
+            });
+
+            pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+            pageButtons.innerHTML = '';
+
+            function createButton(label, targetPage, active = false) {
+                const button = document.createElement('button');
+
+                button.textContent = label;
+                button.className = active
+                    ? 'px-4 py-2 rounded-lg bg-blue-500 text-white'
+                    : 'px-4 py-2 rounded-lg bg-white/10 text-gray-300 hover:bg-white/20';
+
+                button.addEventListener('click', () => showPage(targetPage));
+                pageButtons.appendChild(button);
+            }
+
+            if (currentPage > 1) {
+                createButton('Previous', currentPage - 1);
+            }
+
+            for (let i = 1; i <= totalPages; i++) {
+                createButton(i, i, i === currentPage);
+            }
+
+            if (currentPage < totalPages) {
+                createButton('Next', currentPage + 1);
+            }
+        }
+
+        showPage(1);
+    });
+</script>
+
+</main>
+</body>
+</html>

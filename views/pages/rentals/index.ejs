@@ -1,0 +1,115 @@
+<%- include('../../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../../partials/sidebar', { activePage: 'rentals' }) %>
+
+<div class="w-full max-w-7xl">
+
+    <div class="mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold mb-3">
+            Data Rental
+        </h1>
+        <p class="text-gray-400">
+            Daftar transaksi penyewaan komputer warnet.
+        </p>
+    </div>
+
+    <a href="/rentals/tambah"
+        class="inline-block bg-blue-600 hover:bg-blue-500 py-3 px-5 rounded-xl transition my-5">
+        + Tambah Rental
+    </a>
+
+    <div class="overflow-x-auto border border-white/10 shadow-2xl bg-white/5 backdrop-blur-md my-4 rounded-xl">
+
+        <table class="w-full text-sm text-left">
+
+            <thead class="bg-white/10 text-gray-200 uppercase text-xs">
+                <tr>
+                    <th class="px-4 py-4 text-center">No</th>
+                    <th class="px-6 py-4">Member</th>
+                    <th class="px-6 py-4 text-center">Nomor PC</th>
+                    <th class="px-6 py-4">Waktu Mulai</th>
+                    <th class="px-6 py-4">Waktu Selesai</th>
+                    <th class="px-6 py-4 text-center">Total Biaya</th>
+                    <th class="px-6 py-4 text-center">Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-white/10">
+
+                <% if (rentalList.length === 0) { %>
+
+                    <tr>
+                        <td colspan="7" class="px-6 py-8 text-center text-gray-400">
+                            Belum ada data rental.
+                        </td>
+                    </tr>
+
+                <% } else { %>
+
+                    <% rentalList.forEach((item, index) => { %>
+
+                        <tr class="hover:bg-white/10 transition">
+
+                            <td class="px-4 py-5 text-center text-gray-400">
+                                <%= index + 1 %>
+                            </td>
+
+                            <td class="px-6 py-5 font-semibold">
+                                <%= item.nama_member || 'Non-member' %>
+                            </td>
+
+                            <td class="px-6 py-5 text-center">
+                                <span class="bg-blue-500 px-3 py-1 rounded-full text-xs">
+                                    PC <%= item.nomor_pc %>
+                                </span>
+                            </td>
+
+                            <td class="px-6 py-5 text-gray-300">
+                                <%= new Date(item.waktu_mulai).toLocaleString('id-ID') %>
+                            </td>
+
+                            <td class="px-6 py-5 text-gray-300">
+                                <%= item.waktu_selesai
+                                    ? new Date(item.waktu_selesai).toLocaleString('id-ID')
+                                    : 'Belum selesai' %>
+                            </td>
+
+                            <td class="px-6 py-5 text-center font-bold text-green-400">
+                                <%= item.total_biaya !== null
+                                    ? 'Rp ' + Number(item.total_biaya).toLocaleString('id-ID')
+                                    : '-' %>
+                            </td>
+
+                            <td class="px-6 py-5">
+                                <div class="flex items-center justify-center gap-2">
+
+                                    <a href="/rentals/edit/<%= item.id_rental %>"
+                                        class="bg-blue-500 hover:bg-blue-400 py-2 px-4 rounded transition">
+                                        Edit
+                                    </a>
+
+                                    <form action="/rentals/delete/<%= item.id_rental %>"
+                                        method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus rental ini?')">
+
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-400 py-2 px-4 rounded transition">
+                                            Delete
+                                        </button>
+
+                                    </form>
+
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %>

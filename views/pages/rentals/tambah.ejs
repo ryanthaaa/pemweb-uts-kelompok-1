@@ -1,0 +1,114 @@
+<%- include('../../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../../partials/sidebar', { activePage: 'rentals' }) %>
+
+<div class="w-full max-w-3xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-3">Tambah Rental</h1>
+        <p class="text-gray-400">Masukkan informasi penyewaan komputer.</p>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8">
+        <form action="/rentals/create" method="POST" class="space-y-5">
+
+            <!-- Member -->
+            <div>
+                <label for="id_member" class="block text-sm font-medium text-gray-300 mb-2">
+                    Member
+                </label>
+                <select
+                    name="id_member"
+                    id="id_member"
+                    class="w-full px-4 py-3 rounded-lg bg-[#09132d] border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+                    <option value="">Tanpa Member</option>
+                    <% members.forEach(member => { %>
+                        <option value="<%= member.id_member %>">
+                            <%= member.nama %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <!-- Komputer -->
+            <div>
+                <label for="id_computer" class="block text-sm font-medium text-gray-300 mb-2">
+                    Komputer <span class="text-red-400">*</span>
+                </label>
+                <select
+                    name="id_computer"
+                    id="id_computer"
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-[#09132d] border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+                    <option value="">Pilih Komputer</option>
+                    <% computers.forEach(computer => { %>
+                        <option value="<%= computer.id_computer %>">
+                            PC <%= computer.nomor_pc %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <!-- Waktu Mulai -->
+            <div>
+                <label for="waktu_mulai" class="block text-sm font-medium text-gray-300 mb-2">
+                    Waktu Mulai <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="datetime-local"
+                    name="waktu_mulai"
+                    id="waktu_mulai"
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Waktu Selesai -->
+            <div>
+                <label for="waktu_selesai" class="block text-sm font-medium text-gray-300 mb-2">
+                    Waktu Selesai
+                </label>
+                <input
+                    type="datetime-local"
+                    name="waktu_selesai"
+                    id="waktu_selesai"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Total Biaya -->
+            <div>
+                <label for="total_biaya" class="block text-sm font-medium text-gray-300 mb-2">
+                    Total Biaya
+                </label>
+                <input
+                    type="number"
+                    name="total_biaya"
+                    id="total_biaya"
+                    min="0"
+                    placeholder="Contoh: 15000"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Tombol -->
+            <div class="flex justify-end gap-3 border-t border-white/10 pt-6">
+                <a
+                    href="/rentals"
+                    class="px-5 py-3 rounded-lg bg-white/10 text-gray-300 hover:bg-white/20 transition"
+                >
+                    Batal
+                </a>
+                <button
+                    type="submit"
+                    class="px-5 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+                >
+                    Simpan Rental
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %>
