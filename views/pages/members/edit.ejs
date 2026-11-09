@@ -1,0 +1,109 @@
+<%- include('../../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../../partials/sidebar', { activePage: 'members' }) %>
+
+<%
+    // Ubah tanggal dari database menjadi format YYYY-MM-DD agar terbaca input type="date"
+    const formatDate = (value) => {
+        if (!value) return '';
+
+        const date = new Date(value);
+        const pad = (number) => String(number).padStart(2, '0');
+
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+%>
+
+<div class="w-full max-w-3xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-3">Edit Member</h1>
+        <p class="text-gray-400">Perbarui informasi member.</p>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8">
+        <form action="/members/edit/<%= member.id_member %>" method="POST" class="space-y-5">
+
+            <!-- Nama -->
+            <div>
+                <label for="nama" class="block text-sm font-medium text-gray-300 mb-2">
+                    Nama <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="text"
+                    name="nama"
+                    id="nama"
+                    value="<%= member.nama %>"
+                    required
+                    maxlength="100"
+                    placeholder="Contoh: Budi Santoso"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- No HP -->
+            <div>
+                <label for="no_hp" class="block text-sm font-medium text-gray-300 mb-2">
+                    No HP
+                </label>
+                <input
+                    type="tel"
+                    name="no_hp"
+                    id="no_hp"
+                    value="<%= member.no_hp ?? '' %>"
+                    maxlength="20"
+                    placeholder="Contoh: 081234567890"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Saldo -->
+            <div>
+                <label for="saldo" class="block text-sm font-medium text-gray-300 mb-2">
+                    Saldo
+                </label>
+                <input
+                    type="number"
+                    name="saldo"
+                    id="saldo"
+                    min="0"
+                    value="<%= member.saldo ?? 0 %>"
+                    placeholder="Contoh: 50000"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Tanggal Daftar -->
+            <div>
+                <label for="tanggal_daftar" class="block text-sm font-medium text-gray-300 mb-2">
+                    Tanggal Daftar <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="date"
+                    name="tanggal_daftar"
+                    id="tanggal_daftar"
+                    value="<%= formatDate(member.tanggal_daftar) %>"
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Tombol -->
+            <div class="flex justify-end gap-3 border-t border-white/10 pt-6">
+                <a
+                    href="/members"
+                    class="px-5 py-3 rounded-lg bg-white/10 text-gray-300 hover:bg-white/20 transition"
+                >
+                    Batal
+                </a>
+                <button
+                    type="submit"
+                    class="px-5 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+                >
+                    Perbarui data
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %>

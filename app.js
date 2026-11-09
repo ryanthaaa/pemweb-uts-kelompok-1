@@ -15,10 +15,9 @@ app.get('/', (req, res) => {
     res.send("HALAMAN DASHBOARD")
 });
 
-// bis jadi contoh misal member
-
-// const memberRoutes = require('./routes/memberRoutes');
-// app.use('/', memberRoutes);
+// Untuk member
+const memberRoutes = require('./routes/member.routes');
+app.use('/', memberRoutes);
 
 const rentalRoutes = require('./routes/rental.routes');
 app.use('/', rentalRoutes);
