@@ -28,15 +28,15 @@ const ComputerModel = {
     create: async (data) => {
         const sql = `
             INSERT INTO computer
-            (nomor_pc, spesifikasi, tarif_per_jam, status)
+            (nomor_pc, jenis_pc, spesifikasi, status)
             VALUES (?, ?, ?, ?)
         `;
 
         const [result] = await db.query(sql, [
             data.nomor_pc,
-            data.spesifikasi || null,
-            data.tarif_per_jam || 0,
-            data.status || 'Tersedia'
+            data.jenis_pc,
+            data.spesifikasi,
+            data.status
         ]);
 
         return result;

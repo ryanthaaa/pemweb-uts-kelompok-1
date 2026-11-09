@@ -15,6 +15,6 @@ router.get('/computers/edit/:id', computerController.getEditForm);
 router.post('/computers/edit/:id', computerController.updateComputer);
 
 // DELETE 
-router.post('/delete/:id', computerController.deleteComputer);
+router.post('/computers/delete/:id', computerController.deleteComputer);
 
 module.exports = router;
