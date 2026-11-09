@@ -1,0 +1,99 @@
+<%- include('../../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../../partials/sidebar', { activePage: 'computers' }) %>
+
+<div class="w-full max-w-3xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-3">Edit Komputer</h1>
+        <p class="text-gray-400">Perbarui informasi unit komputer.</p>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8">
+        <form action="/computers/edit/<%= computer.id_computer %>" method="POST" class="space-y-5">
+
+            <!-- Nomor PC -->
+            <div>
+                <label for="nomor_pc" class="block text-sm font-medium text-gray-300 mb-2">
+                    Nomor PC <span class="text-red-400">*</span>
+                </label>
+                <input
+                    type="number"
+                    name="nomor_pc"
+                    id="nomor_pc"
+                    min="1"
+                    value="<%= computer.nomor_pc %>"
+                    required
+                    placeholder="Contoh: 1"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                >
+            </div>
+
+            <!-- Jenis PC -->
+            <div>
+                <label for="jenis_pc" class="block text-sm font-medium text-gray-300 mb-2">
+                    Jenis PC <span class="text-red-400">*</span>
+                </label>
+                <select
+                    name="jenis_pc"
+                    id="jenis_pc"
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-[#09132d] border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+                    <option value="Reguler" <%= computer.jenis_pc === 'Reguler' ? 'selected' : '' %>>Reguler</option>
+                    <option value="VIP" <%= computer.jenis_pc === 'VIP' ? 'selected' : '' %>>VIP</option>
+                    <option value="Premium" <%= computer.jenis_pc === 'Premium' ? 'selected' : '' %>>Premium</option>
+                </select>
+            </div>
+
+            <!-- Spesifikasi -->
+            <div>
+                <label for="spesifikasi" class="block text-sm font-medium text-gray-300 mb-2">
+                    Spesifikasi <span class="text-red-400">*</span>
+                </label>
+                <textarea
+                    name="spesifikasi"
+                    id="spesifikasi"
+                    rows="3"
+                    required
+                    placeholder="Contoh: Core i5-12400F, RAM 16GB, RTX 3060"
+                    class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400"
+                ><%= computer.spesifikasi || '' %></textarea>
+            </div>
+
+            <!-- Status -->
+            <div>
+                <label for="status" class="block text-sm font-medium text-gray-300 mb-2">
+                    Status <span class="text-red-400">*</span>
+                </label>
+                <select
+                    name="status"
+                    id="status"
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-[#09132d] border border-white/10 text-white focus:outline-none focus:border-blue-400"
+                >
+                    <option value="Tersedia" <%= computer.status === 'Tersedia' ? 'selected' : '' %>>Tersedia</option>
+                    <option value="Digunakan" <%= computer.status === 'Digunakan' ? 'selected' : '' %>>Digunakan</option>
+                    <option value="Maintenance" <%= computer.status === 'Maintenance' ? 'selected' : '' %>>Maintenance</option>
+                </select>
+            </div>
+
+            <!-- Tombol -->
+            <div class="flex justify-end gap-3 border-t border-white/10 pt-6">
+                <a
+                    href="/computers"
+                    class="px-5 py-3 rounded-lg bg-white/10 text-gray-300 hover:bg-white/20 transition"
+                >
+                    Batal
+                </a>
+                <button
+                    type="submit"
+                    class="px-5 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+                >
+                    Perbarui Komputer
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %>

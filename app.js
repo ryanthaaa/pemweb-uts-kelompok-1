@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 const rentalRoutes = require('./routes/rental.routes');
 app.use('/', rentalRoutes);
 
+const computerRoutes = require('./routes/computer.routes');
+app.use('/', computerRoutes);
+
 db.query('SELECT 1 + 1 AS result')
     .then(() => {
         console.log('[DATABASE] Connect Secured to MySQL POOL.')
