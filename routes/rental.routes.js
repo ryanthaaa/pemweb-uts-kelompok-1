@@ -3,18 +3,18 @@ const router = express.Router();
 
 const rentalController = require('../controllers/rental.controller');
 
-// READ
-router.get('/rentals', rentalController.getAllRentals);
+// READ 
+router.get('/', rentalController.getAllRentals);
 
-// CREATE
-router.get('/rentals/tambah', rentalController.getCreateForm);
-router.post('/rentals/create', rentalController.createRental);
+// CREATE 
+router.get('/tambah', rentalController.getCreateForm);
+router.post('/create', rentalController.createRental);
 
-// UPDATE
-router.get('/rentals/edit/:id', rentalController.getEditForm);
-router.post('/rentals/edit/:id', rentalController.updateRental);
+// UPDATE 
+router.get('/edit/:id', rentalController.getEditForm);
+router.post('/edit/:id', rentalController.updateRental);
 
-// DELETE
-router.post('/rentals/delete/:id', rentalController.deleteRental);
+// DELETE 
+router.post('/delete/:id', rentalController.deleteRental);
 
 module.exports = router;
