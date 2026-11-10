@@ -368,8 +368,8 @@ Berikut anggota yang berkontribusi dalam pengembangan aplikasi:
 | Anggota | Tanggung Jawab | GitHub |
 |---|---|---|
 | Ryan | Pengembangan dan integrasi fitur Computer serta pengelolaan repository | [@ryanthaaa](https://github.com/ryanthaaa) |
-| Dandi Prayata | Pengembangan fitur Member | [@DandiPrayata-lgtm](https://github.com/DandiPrayata-lgtm) |
-| Bayu Trias | Pengembangan fitur Produk | [@BayuuuTriasss](https://github.com/BayuuuTriasss) |
+| Dandi Prayata | Pengembangan fitur Member serta Merancang ERD | [@DandiPrayata-lgtm](https://github.com/DandiPrayata-lgtm) |
+| Bayu Trias | Pengembangan fitur Produk dan Pengolahan Database | [@BayuuuTriasss](https://github.com/BayuuuTriasss) |
 | Rama | Pengembangan fitur Computer | [@ramadiputra01](https://github.com/ramadiputra01) |
 
 ## 📄 Lisensi
